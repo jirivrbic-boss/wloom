@@ -5,7 +5,7 @@ export const SITE_CONFIG = {
   tagline: 'S Námi Rozkvetete Online',
   description: 'Vytváříme moderní webové stránky, které přitahují zákazníky a pomáhají vašemu byznysu růst. Každý projekt je jako květ – vyrůstá z vašich potřeb a rozkvétá online.',
   url: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
-  email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'hello@wloom.studio',
+  email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'info@wloom.eu',
 } as const
 
 export const SAKURA_CONFIG = {

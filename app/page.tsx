@@ -2,7 +2,7 @@
 
 import SakuraScene from '@/components/3d/SakuraScene'
 import BentoCard from '@/components/ui/BentoCard'
-import { Mail, Code2, Box, Palette, ArrowUpRight, Github, Linkedin, Twitter } from 'lucide-react'
+import { Mail, Code2, Box, Palette, ArrowUpRight } from 'lucide-react'
 import { motion } from 'framer-motion'
 
 export default function Home() {
@@ -65,7 +65,7 @@ export default function Home() {
       {/* Hlavní obsah */}
       <main className="min-h-screen relative z-10">
         {/* Header */}
-        <header className="p-4 md:p-6 flex justify-between items-center">
+        <header className="p-4 md:p-6">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -73,26 +73,6 @@ export default function Home() {
           >
             <h1 className="text-2xl font-bold text-gradient-sakura">WLOOM</h1>
             <p className="text-xs font-mono text-text-main/60">v1.0.0</p>
-          </motion.div>
-
-          <motion.div
-            className="flex gap-4"
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" 
-               className="text-text-main/60 hover:text-accent-sakura transition-colors">
-              <Github size={20} />
-            </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"
-               className="text-text-main/60 hover:text-accent-sakura transition-colors">
-              <Linkedin size={20} />
-            </a>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"
-               className="text-text-main/60 hover:text-accent-sakura transition-colors">
-              <Twitter size={20} />
-            </a>
           </motion.div>
         </header>
 
@@ -160,15 +140,34 @@ export default function Home() {
                 Chcete rozkvetnou online? Spojme se!
               </p>
               <a 
-                href="mailto:hello@wloom.studio"
+                href="mailto:info@wloom.eu"
                 className="flex items-center gap-2 text-accent-sakura hover:text-accent-sakura/80 transition-colors group"
               >
                 <Mail size={24} />
                 <span className="text-sm group-hover:underline">
-                  hello@wloom.studio
+                  info@wloom.eu
                 </span>
               </a>
             </BentoCard>
+
+            {/* Services Section Header */}
+            <div className="md:col-span-3 lg:col-span-4 mt-8 mb-2">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.6 }}
+              >
+                <p className="text-sm font-mono text-accent-sakura/70 mb-2 tracking-wider uppercase">
+                  co děláme
+                </p>
+                <h3 className="text-3xl md:text-4xl font-bold text-text-main mb-2">
+                  Naše Služby
+                </h3>
+                <p className="text-text-main/60 max-w-2xl">
+                  Pomůžeme vašemu byznysu rozkvetnou online s moderními technologiemi
+                </p>
+              </motion.div>
+            </div>
 
             {/* Services Grid - 3x Cards */}
             {services.map((service, i) => (
@@ -180,7 +179,7 @@ export default function Home() {
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.4, delay: 0.4 + i * 0.1 }}
+                  transition={{ duration: 0.4, delay: 0.7 + i * 0.1 }}
                   className="flex flex-col items-start gap-3"
                 >
                   <service.icon size={32} className="text-accent-sakura" />
@@ -191,6 +190,25 @@ export default function Home() {
                 </motion.div>
               </BentoCard>
             ))}
+
+            {/* Portfolio Section Header */}
+            <div className="md:col-span-3 lg:col-span-4 mt-12 mb-2">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.8 }}
+              >
+                <p className="text-sm font-mono text-accent-sakura/70 mb-2 tracking-wider uppercase">
+                  naše práce
+                </p>
+                <h3 className="text-3xl md:text-4xl font-bold text-text-main mb-2">
+                  Portfolio Projektů
+                </h3>
+                <p className="text-text-main/60 max-w-2xl">
+                  Projekty, které s námi rozkvetly – od e-shopů po firemní weby
+                </p>
+              </motion.div>
+            </div>
 
             {/* Featured Projects */}
             {projects.map((project, i) => (

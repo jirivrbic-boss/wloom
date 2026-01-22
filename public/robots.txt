@@ -2,4 +2,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://wloom.studio/sitemap.xml
+Sitemap: https://wloom.eu/sitemap.xml
