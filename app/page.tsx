@@ -1,0 +1,245 @@
+'use client'
+
+import SakuraScene from '@/components/3d/SakuraScene'
+import BentoCard from '@/components/ui/BentoCard'
+import { Mail, Code2, Box, Palette, ArrowUpRight, Github, Linkedin, Twitter } from 'lucide-react'
+import { motion } from 'framer-motion'
+
+export default function Home() {
+  const projects = [
+    {
+      title: 'Bulldogo.cz',
+      tech: 'Webová aplikace',
+      description: 'Platforma pro inzerci služeb – propojili jsme zákazníky s poskytovateli',
+      link: 'https://bulldogo.cz',
+    },
+    {
+      title: 'Účtárna',
+      tech: 'Firemní systém',
+      description: 'Moderní účetní systém, kde se vyznáte na první pohled',
+      link: 'https://www.uctarna.fun',
+    },
+    {
+      title: 'Extroworld',
+      tech: 'Značková prezentace',
+      description: 'Kreativní web pro moderní značku',
+      link: 'https://extroworld.com',
+    },
+    {
+      title: 'Podlahy Katalog',
+      tech: 'Produktový katalog',
+      description: 'Přehledný katalog produktů s elegantním designem',
+      link: 'https://podlahy.vercel.app',
+    },
+    {
+      title: 'Ejdry.cz',
+      tech: 'Firemní web',
+      description: 'Profesionální prezentace firmy',
+      link: 'http://ejdry.cz',
+    },
+    {
+      title: 'Ráj mazlíčků',
+      tech: 'E-shop a web',
+      description: 'Kompletní web pro rodinnou firmu z Karlovarska – rozkvétají s námi od roku 2025',
+      link: 'https://rajmazlicku.vercel.app',
+    },
+  ]
+
+  const services = [
+    { icon: Code2, title: 'Webové Stránky', desc: 'Moderní weby, které zaujmou' },
+    { icon: Box, title: '3D Zážitky', desc: 'Interaktivní prostorové animace' },
+    { icon: Palette, title: 'Grafický Design', desc: 'Vizuální identita značky' },
+  ]
+
+  const stack = [
+    'Moderní technologie', 'Rychlé načítání', 'Bezpečnost', 
+    '3D animace', 'Responzivní design', 'SEO optimalizace',
+    'Mobilní zařízení', 'Google Analytics', 'Hosting'
+  ]
+
+  return (
+    <>
+      {/* 3D Sakura pozadí */}
+      <SakuraScene />
+
+      {/* Hlavní obsah */}
+      <main className="min-h-screen relative z-10">
+        {/* Header */}
+        <header className="p-4 md:p-6 flex justify-between items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <h1 className="text-2xl font-bold text-gradient-sakura">WLOOM</h1>
+            <p className="text-xs font-mono text-text-main/60">v1.0.0</p>
+          </motion.div>
+
+          <motion.div
+            className="flex gap-4"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" 
+               className="text-text-main/60 hover:text-accent-sakura transition-colors">
+              <Github size={20} />
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"
+               className="text-text-main/60 hover:text-accent-sakura transition-colors">
+              <Linkedin size={20} />
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"
+               className="text-text-main/60 hover:text-accent-sakura transition-colors">
+              <Twitter size={20} />
+            </a>
+          </motion.div>
+        </header>
+
+        {/* Bento Grid */}
+        <div className="container mx-auto p-4 md:p-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-[minmax(200px,auto)]">
+            
+            {/* Hero Section - Span 2x2 */}
+            <BentoCard 
+              span="md:col-span-2 md:row-span-2"
+              className="flex flex-col justify-center"
+            >
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.2 }}
+              >
+                <h2 className="text-5xl md:text-7xl font-bold mb-4 leading-tight">
+                  WLOOM
+                  <br />
+                  <span className="text-gradient-sakura">STUDIO</span>
+                </h2>
+                <p className="text-lg md:text-xl text-text-main/80 mb-6 max-w-md">
+                  <strong>S námi rozkvetete online.</strong> Vytváříme moderní webové stránky, 
+                  které přitahují zákazníky a pomáhají vašemu byznysu růst.
+                </p>
+                <p className="text-base text-text-main/70 mb-4 max-w-md">
+                  Spojujeme nejnovější technologie s krásnými vizuály. Každý projekt 
+                  je jako květ – vyrůstá z vašich potřeb a rozkvétá online.
+                </p>
+                <p className="font-mono text-sm text-accent-sakura/70">
+                  🌸 Pěstujeme digitální realitu
+                </p>
+              </motion.div>
+            </BentoCard>
+
+            {/* About - Span 1x2 */}
+            <BentoCard 
+              subtitle="naše výhody"
+              title="Co Nabízíme"
+              span="md:col-span-1 md:row-span-2"
+            >
+              <div className="space-y-2">
+                {stack.map((tech, i) => (
+                  <motion.div
+                    key={tech}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.3, delay: 0.3 + i * 0.05 }}
+                    className="text-sm font-mono text-text-main/70 hover:text-accent-sakura transition-colors cursor-default"
+                  >
+                    ✓ {tech}
+                  </motion.div>
+                ))}
+              </div>
+            </BentoCard>
+
+            {/* Contact - Span 1x1 */}
+            <BentoCard 
+              subtitle="kontakt"
+              title="Napište nám"
+              span="md:col-span-1 md:row-span-1"
+            >
+              <p className="text-sm text-text-main/70 mb-3">
+                Chcete rozkvetnou online? Spojme se!
+              </p>
+              <a 
+                href="mailto:hello@wloom.studio"
+                className="flex items-center gap-2 text-accent-sakura hover:text-accent-sakura/80 transition-colors group"
+              >
+                <Mail size={24} />
+                <span className="text-sm group-hover:underline">
+                  hello@wloom.studio
+                </span>
+              </a>
+            </BentoCard>
+
+            {/* Services Grid - 3x Cards */}
+            {services.map((service, i) => (
+              <BentoCard
+                key={service.title}
+                subtitle={`služba ${i + 1}`}
+                span="md:col-span-1 md:row-span-1"
+              >
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.4, delay: 0.4 + i * 0.1 }}
+                  className="flex flex-col items-start gap-3"
+                >
+                  <service.icon size={32} className="text-accent-sakura" />
+                  <div>
+                    <h4 className="font-bold text-lg mb-1">{service.title}</h4>
+                    <p className="text-sm text-text-main/70">{service.desc}</p>
+                  </div>
+                </motion.div>
+              </BentoCard>
+            ))}
+
+            {/* Featured Projects */}
+            {projects.map((project, i) => (
+              <BentoCard
+                key={project.title}
+                subtitle={project.tech}
+                title={project.title}
+                span="md:col-span-1 lg:col-span-1 md:row-span-1"
+              >
+                <p className="text-sm text-text-main/70 mb-4">{project.description}</p>
+                <a 
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1 text-accent-sakura hover:gap-2 transition-all text-sm"
+                >
+                  Zobrazit projekt
+                  <ArrowUpRight size={16} />
+                </a>
+              </BentoCard>
+            ))}
+
+            {/* Philosophy - Span 2x1 */}
+            <BentoCard 
+              subtitle="naše filosofie"
+              title="Rozkvetněte S Námi"
+              span="md:col-span-2 md:row-span-1"
+            >
+              <p className="text-text-main/70 leading-relaxed text-base">
+                <strong>Každý projekt je jako sakura – roste a rozkvétá.</strong> Začínáme s vaší 
+                představou, pečlivě ji pěstujeme a sledujeme, jak váš byznys online rozkvétá. 
+                Kombinujeme nejnovější technologie s krásnými vizuály, které zaujmou mladé i starší generaci. 
+                Výsledek? Web, který přináší skutečné výsledky.
+              </p>
+            </BentoCard>
+
+          </div>
+        </div>
+
+        {/* Footer */}
+        <footer className="p-6 text-center">
+          <p className="text-sm text-text-main/60 mb-2">
+            Rozkvetněte s námi online 🌸
+          </p>
+          <p className="text-xs text-text-main/40">
+            © 2026 WLOOM STUDIO — Pěstujeme digitální realitu s láskou a nejnovějšími technologiemi
+          </p>
+        </footer>
+      </main>
+    </>
+  )
+}
