@@ -3,7 +3,7 @@
 import SakuraScene from '@/components/3d/SakuraScene'
 import BentoCard from '@/components/ui/BentoCard'
 import ProjectGrid from '@/components/ui/ProjectGrid'
-import { Mail, Code2, Box, Palette, Share2 } from 'lucide-react'
+import { Mail, Code2, Box, Palette, Share2, FileText } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { PORTFOLIO_PROJECTS } from '@/lib/projects-data'
 
@@ -13,7 +13,8 @@ export default function Home() {
     { icon: Code2, title: 'Webové Stránky', desc: 'Moderní weby, které zaujmou' },
     { icon: Box, title: '3D Zážitky', desc: 'Interaktivní prostorové animace' },
     { icon: Palette, title: 'Grafický Design', desc: 'Vizuální identita značky' },
-    { icon: Share2, title: 'Správa Sociálních Sítí', desc: 'Content & community management' },
+    { icon: Share2, title: 'Správa Sociálních Sítí', desc: 'Community management a strategie' },
+    { icon: FileText, title: 'Tvorba Obsahu', desc: 'Texty, copywriting a content marketing' },
   ]
 
   const stack = [
@@ -129,7 +130,7 @@ export default function Home() {
                   Naše Služby
                 </h3>
                 <p className="text-text-main/60 max-w-2xl">
-                  Pomůžeme vašemu byznysu rozkvetnou online s moderními technologiemi
+                  Pomůžeme vašemu byznysu rozkvést online pomocí moderních technologií
                 </p>
               </motion.div>
             </div>
