@@ -13,7 +13,7 @@ export const PORTFOLIO_PROJECTS: Project[] = [
     description: 'Platforma pro inzerci služeb – propojili jsme zákazníky s poskytovateli',
     link: 'https://bulldogo.cz',
     screenshot: '/screenshots/bulldogo.png',
-    allowIframe: false,
+    allowIframe: true,  // Zkusíme načíst, fallback pokud selže
     year: '2024',
     client: 'Bulldogo s.r.o.',
     story: 'Bulldogo vzniklo z potřeby vytvořit transparentní platformu, kde se poskytovatelé služeb mohou prezentovat a zákazníci snadno najít to, co potřebují. Chtěli jsme eliminovat chaos v inzerci a vytvořit moderní, uživatelsky přívětivé prostředí.',
@@ -117,7 +117,7 @@ export const PORTFOLIO_PROJECTS: Project[] = [
     description: 'Profesionální prezentace firmy',
     link: 'http://ejdry.cz',
     screenshot: '/screenshots/ejdry.png',
-    allowIframe: false,
+    allowIframe: true,  // Zkusíme načíst, fallback pokud selže
     year: '2023',
     client: 'EJDRY s.r.o.',
     story: 'Tradiční firma s dlouholetou historií potřebovala modernizovat svou online prezentaci. Cílem bylo představit firmu mladším generacím, ale zároveň zachovat důvěryhodnost a profesionalitu.',

@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { X, ExternalLink, AlertCircle } from 'lucide-react'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import type { Project } from '@/types'
 import { ANIMATION_CONFIG } from '@/lib/constants'
 
@@ -19,6 +19,7 @@ interface ExpandedProjectViewProps {
 export default function ExpandedProjectView({ project, onClose }: ExpandedProjectViewProps) {
   const [iframeError, setIframeError] = useState(false)
   const [isIframeLoading, setIsIframeLoading] = useState(true)
+  const iframeTimeoutRef = useRef<NodeJS.Timeout>()
 
   // Scroll lock při otevření
   useEffect(() => {
@@ -36,6 +37,24 @@ export default function ExpandedProjectView({ project, onClose }: ExpandedProjec
     window.addEventListener('keydown', handleEsc)
     return () => window.removeEventListener('keydown', handleEsc)
   }, [onClose])
+
+  // Timeout pro iFrame loading (pokud se nenačte do 10s, ukáže fallback)
+  useEffect(() => {
+    if (project.allowIframe !== false && !iframeError) {
+      iframeTimeoutRef.current = setTimeout(() => {
+        if (isIframeLoading) {
+          console.log(`iFrame timeout pro ${project.title} - zobrazuji fallback`)
+          setIframeError(true)
+        }
+      }, 10000) // 10 sekund timeout
+    }
+    
+    return () => {
+      if (iframeTimeoutRef.current) {
+        clearTimeout(iframeTimeoutRef.current)
+      }
+    }
+  }, [project.allowIframe, project.title, isIframeLoading, iframeError])
 
   return (
     <motion.div
@@ -130,15 +149,21 @@ export default function ExpandedProjectView({ project, onClose }: ExpandedProjec
                 </div>
 
                 {/* iFrame nebo Fallback */}
-                <div className="pt-10 w-full h-full">
+                <div className="pt-10 w-full h-full relative">
                   {!iframeError && project.allowIframe !== false ? (
                     <>
                       {isIframeLoading && (
-                        <div className="absolute inset-0 flex items-center justify-center bg-surface/50">
+                        <div className="absolute inset-0 flex items-center justify-center bg-surface/50 z-20">
                           <div className="flex flex-col items-center gap-3">
                             <div className="w-8 h-8 border-2 border-accent-sakura/30 border-t-accent-sakura rounded-full animate-spin" />
-                            <span className="text-sm text-text-main/60">Načítám náhled...</span>
+                            <span className="text-sm text-text-main/60">Načítám živý náhled...</span>
                           </div>
+                        </div>
+                      )}
+                      {!isIframeLoading && !iframeError && (
+                        <div className="absolute top-12 right-2 z-20 bg-green-500/90 text-white text-xs px-2 py-1 rounded-full flex items-center gap-1 animate-pulse">
+                          <div className="w-1.5 h-1.5 bg-white rounded-full" />
+                          Živý web
                         </div>
                       )}
                       <iframe
@@ -146,20 +171,53 @@ export default function ExpandedProjectView({ project, onClose }: ExpandedProjec
                         className="w-full h-full"
                         sandbox="allow-scripts allow-same-origin allow-forms"
                         loading="lazy"
-                        onLoad={() => setIsIframeLoading(false)}
-                        onError={() => setIframeError(true)}
+                        onLoad={() => {
+                          setIsIframeLoading(false)
+                          if (iframeTimeoutRef.current) {
+                            clearTimeout(iframeTimeoutRef.current)
+                          }
+                          console.log(`✅ iFrame načten úspěšně: ${project.title}`)
+                        }}
+                        onError={() => {
+                          console.log(`❌ iFrame error: ${project.title}`)
+                          setIframeError(true)
+                          if (iframeTimeoutRef.current) {
+                            clearTimeout(iframeTimeoutRef.current)
+                          }
+                        }}
                         title={`Live preview - ${project.title}`}
                       />
                     </>
                   ) : (
                     // Fallback - Screenshot nebo zpráva
-                    <div className="w-full h-full flex items-center justify-center bg-surface/30">
+                    <div className="w-full h-full flex items-center justify-center bg-surface/30 relative">
                       {project.screenshot ? (
-                        <img 
-                          src={project.screenshot} 
-                          alt={project.title}
-                          className="w-full h-full object-cover"
-                        />
+                        <>
+                          <img 
+                            src={project.screenshot} 
+                            alt={project.title}
+                            className="w-full h-full object-contain"
+                          />
+                          <div className="absolute bottom-4 left-4 right-4 bg-surface/95 backdrop-blur-sm border border-border/50 rounded-lg p-3">
+                            <div className="flex items-start gap-2">
+                              <AlertCircle className="w-5 h-5 text-accent-sakura/70 flex-shrink-0 mt-0.5" />
+                              <div>
+                                <p className="text-sm text-text-main/80 mb-1">
+                                  Web blokuje živý náhled v iFrame
+                                </p>
+                                <a 
+                                  href={project.link}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="inline-flex items-center gap-1 text-xs text-accent-sakura hover:underline"
+                                >
+                                  Otevřít web v novém okně
+                                  <ExternalLink size={12} />
+                                </a>
+                              </div>
+                            </div>
+                          </div>
+                        </>
                       ) : (
                         <div className="text-center p-8">
                           <AlertCircle className="w-12 h-12 text-accent-sakura/50 mx-auto mb-4" />
