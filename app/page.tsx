@@ -3,7 +3,7 @@
 import SakuraScene from '@/components/3d/SakuraScene'
 import BentoCard from '@/components/ui/BentoCard'
 import ProjectGrid from '@/components/ui/ProjectGrid'
-import { Mail, Code2, Box, Palette } from 'lucide-react'
+import { Mail, Code2, Box, Palette, Share2 } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { PORTFOLIO_PROJECTS } from '@/lib/projects-data'
 
@@ -13,6 +13,7 @@ export default function Home() {
     { icon: Code2, title: 'Webové Stránky', desc: 'Moderní weby, které zaujmou' },
     { icon: Box, title: '3D Zážitky', desc: 'Interaktivní prostorové animace' },
     { icon: Palette, title: 'Grafický Design', desc: 'Vizuální identita značky' },
+    { icon: Share2, title: 'Správa Sociálních Sítí', desc: 'Content & community management' },
   ]
 
   const stack = [
