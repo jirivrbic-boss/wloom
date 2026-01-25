@@ -133,8 +133,7 @@ export default function ExpandedProjectView({ project, onClose }: ExpandedProjec
               
               <motion.div
                 layoutId={`project-image-${project.id}`}
-                className="relative w-full bg-surface/50 rounded-xl overflow-hidden border border-border/50"
-                style={{ aspectRatio: '16/10' }}
+                className="relative w-full bg-surface/50 rounded-2xl md:rounded-xl overflow-hidden border border-border/50 aspect-[9/16] md:aspect-[16/10]"
               >
                 {/* Browser Mockup Header */}
                 <div className="absolute top-0 left-0 right-0 h-8 md:h-10 bg-surface/90 border-b border-border/50 flex items-center px-2 md:px-4 gap-2 z-10">
