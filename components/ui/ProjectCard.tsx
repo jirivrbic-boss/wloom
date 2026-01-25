@@ -44,24 +44,10 @@ export default function ProjectCard({ project, onClick }: ProjectCardProps) {
         {/* Title - Název projektu */}
         <motion.h3 
           layoutId={`project-title-${project.id}`}
-          className="text-xl font-bold text-text-main mb-3"
+          className="text-xl font-bold text-text-main mb-4"
         >
           {project.title}
         </motion.h3>
-
-        {/* Screenshot/Image Preview */}
-        {project.screenshot && (
-          <motion.div
-            layoutId={`project-image-${project.id}`}
-            className="w-full h-40 mb-4 rounded-lg overflow-hidden bg-surface/50"
-          >
-            <img 
-              src={project.screenshot} 
-              alt={project.title}
-              className="w-full h-full object-cover"
-            />
-          </motion.div>
-        )}
 
         {/* Description */}
         <motion.p 
