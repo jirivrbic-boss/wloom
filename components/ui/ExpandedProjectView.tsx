@@ -137,33 +137,34 @@ export default function ExpandedProjectView({ project, onClose }: ExpandedProjec
                 style={{ aspectRatio: '16/10' }}
               >
                 {/* Browser Mockup Header */}
-                <div className="absolute top-0 left-0 right-0 h-10 bg-surface/90 border-b border-border/50 flex items-center px-4 gap-2 z-10">
-                  <div className="flex gap-2">
-                    <div className="w-3 h-3 rounded-full bg-red-500/60" />
-                    <div className="w-3 h-3 rounded-full bg-yellow-500/60" />
-                    <div className="w-3 h-3 rounded-full bg-green-500/60" />
+                <div className="absolute top-0 left-0 right-0 h-8 md:h-10 bg-surface/90 border-b border-border/50 flex items-center px-2 md:px-4 gap-2 z-10">
+                  <div className="flex gap-1.5 md:gap-2 flex-shrink-0">
+                    <div className="w-2 h-2 md:w-3 md:h-3 rounded-full bg-red-500/60" />
+                    <div className="w-2 h-2 md:w-3 md:h-3 rounded-full bg-yellow-500/60" />
+                    <div className="w-2 h-2 md:w-3 md:h-3 rounded-full bg-green-500/60" />
                   </div>
-                  <div className="flex-1 text-center">
-                    <span className="text-xs font-mono text-text-main/50">{project.link}</span>
+                  <div className="flex-1 text-center overflow-hidden">
+                    <span className="text-[10px] md:text-xs font-mono text-text-main/50 truncate block">{project.link}</span>
                   </div>
                 </div>
 
                 {/* iFrame nebo Fallback */}
-                <div className="pt-10 w-full h-full relative">
+                <div className="pt-8 md:pt-10 w-full h-full relative">
                   {!iframeError && project.allowIframe !== false ? (
                     <>
                       {isIframeLoading && (
                         <div className="absolute inset-0 flex items-center justify-center bg-surface/50 z-20">
-                          <div className="flex flex-col items-center gap-3">
-                            <div className="w-8 h-8 border-2 border-accent-sakura/30 border-t-accent-sakura rounded-full animate-spin" />
-                            <span className="text-sm text-text-main/60">Načítám živý náhled...</span>
+                          <div className="flex flex-col items-center gap-2 md:gap-3 px-4">
+                            <div className="w-6 h-6 md:w-8 md:h-8 border-2 border-accent-sakura/30 border-t-accent-sakura rounded-full animate-spin" />
+                            <span className="text-xs md:text-sm text-text-main/60 text-center">Načítám živý náhled...</span>
                           </div>
                         </div>
                       )}
                       {!isIframeLoading && !iframeError && (
-                        <div className="absolute top-12 right-2 z-20 bg-green-500/90 text-white text-xs px-2 py-1 rounded-full flex items-center gap-1 animate-pulse">
-                          <div className="w-1.5 h-1.5 bg-white rounded-full" />
-                          Živý web
+                        <div className="absolute top-10 md:top-12 right-1 md:right-2 z-20 bg-green-500/90 text-white text-[10px] md:text-xs px-1.5 md:px-2 py-0.5 md:py-1 rounded-full flex items-center gap-1">
+                          <div className="w-1 h-1 md:w-1.5 md:h-1.5 bg-white rounded-full animate-pulse" />
+                          <span className="hidden sm:inline">Živý web</span>
+                          <span className="sm:hidden">Live</span>
                         </div>
                       )}
                       <iframe
@@ -198,40 +199,40 @@ export default function ExpandedProjectView({ project, onClose }: ExpandedProjec
                             alt={project.title}
                             className="w-full h-full object-contain"
                           />
-                          <div className="absolute bottom-4 left-4 right-4 bg-surface/95 backdrop-blur-sm border border-border/50 rounded-lg p-3">
-                            <div className="flex items-start gap-2">
-                              <AlertCircle className="w-5 h-5 text-accent-sakura/70 flex-shrink-0 mt-0.5" />
-                              <div>
-                                <p className="text-sm text-text-main/80 mb-1">
-                                  Web blokuje živý náhled v iFrame
+                          <div className="absolute bottom-2 md:bottom-4 left-2 md:left-4 right-2 md:right-4 bg-surface/95 backdrop-blur-sm border border-border/50 rounded-lg p-2 md:p-3">
+                            <div className="flex items-start gap-1.5 md:gap-2">
+                              <AlertCircle className="w-4 h-4 md:w-5 md:h-5 text-accent-sakura/70 flex-shrink-0 mt-0.5" />
+                              <div className="min-w-0">
+                                <p className="text-xs md:text-sm text-text-main/80 mb-1">
+                                  Web blokuje živý náhled
                                 </p>
                                 <a 
                                   href={project.link}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="inline-flex items-center gap-1 text-xs text-accent-sakura hover:underline"
+                                  className="inline-flex items-center gap-1 text-[10px] md:text-xs text-accent-sakura hover:underline"
                                 >
-                                  Otevřít web v novém okně
-                                  <ExternalLink size={12} />
+                                  <span className="truncate">Otevřít v novém okně</span>
+                                  <ExternalLink className="flex-shrink-0" size={10} />
                                 </a>
                               </div>
                             </div>
                           </div>
                         </>
                       ) : (
-                        <div className="text-center p-8">
-                          <AlertCircle className="w-12 h-12 text-accent-sakura/50 mx-auto mb-4" />
-                          <p className="text-text-main/60">
-                            Tento web blokuje vkládání do iFrame.
+                        <div className="text-center p-4 md:p-8">
+                          <AlertCircle className="w-8 h-8 md:w-12 md:h-12 text-accent-sakura/50 mx-auto mb-3 md:mb-4" />
+                          <p className="text-sm md:text-base text-text-main/60 mb-3 md:mb-4">
+                            Web blokuje vkládání do iFrame.
                           </p>
                           <a 
                             href={project.link}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 mt-4 text-accent-sakura hover:underline"
+                            className="inline-flex items-center gap-2 text-sm md:text-base text-accent-sakura hover:underline"
                           >
                             Otevřít v novém okně
-                            <ExternalLink size={16} />
+                            <ExternalLink className="flex-shrink-0" size={16} />
                           </a>
                         </div>
                       )}
