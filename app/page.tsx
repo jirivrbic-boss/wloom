@@ -2,48 +2,12 @@
 
 import SakuraScene from '@/components/3d/SakuraScene'
 import BentoCard from '@/components/ui/BentoCard'
-import { Mail, Code2, Box, Palette, ArrowUpRight } from 'lucide-react'
+import ProjectGrid from '@/components/ui/ProjectGrid'
+import { Mail, Code2, Box, Palette } from 'lucide-react'
 import { motion } from 'framer-motion'
+import { PORTFOLIO_PROJECTS } from '@/lib/projects-data'
 
 export default function Home() {
-  const projects = [
-    {
-      title: 'Bulldogo.cz',
-      tech: 'Webová aplikace',
-      description: 'Platforma pro inzerci služeb – propojili jsme zákazníky s poskytovateli',
-      link: 'https://bulldogo.cz',
-    },
-    {
-      title: 'Účtárna',
-      tech: 'Firemní systém',
-      description: 'Moderní účetní systém, kde se vyznáte na první pohled',
-      link: 'https://www.uctarna.fun',
-    },
-    {
-      title: 'Extroworld',
-      tech: 'Značková prezentace',
-      description: 'Kreativní web pro moderní značku',
-      link: 'https://extroworld.com',
-    },
-    {
-      title: 'Podlahy Katalog',
-      tech: 'Produktový katalog',
-      description: 'Přehledný katalog produktů s elegantním designem',
-      link: 'https://podlahy.vercel.app',
-    },
-    {
-      title: 'Ejdry.cz',
-      tech: 'Firemní web',
-      description: 'Profesionální prezentace firmy',
-      link: 'http://ejdry.cz',
-    },
-    {
-      title: 'Ráj mazlíčků',
-      tech: 'E-shop a web',
-      description: 'Kompletní web pro rodinnou firmu z Karlovarska – rozkvétají s námi od roku 2025',
-      link: 'https://rajmazlicku.vercel.app',
-    },
-  ]
 
   const services = [
     { icon: Code2, title: 'Webové Stránky', desc: 'Moderní weby, které zaujmou' },
@@ -204,32 +168,16 @@ export default function Home() {
                 <h3 className="text-3xl md:text-4xl font-bold text-text-main mb-2">
                   Portfolio Projektů
                 </h3>
-                <p className="text-text-main/60 max-w-2xl">
-                  Projekty, které s námi rozkvetly – od e-shopů po firemní weby
+                <p className="text-text-main/60 max-w-2xl mb-6">
+                  Projekty, které s námi rozkvetly – klikněte na kartu pro detail
                 </p>
               </motion.div>
             </div>
 
-            {/* Featured Projects */}
-            {projects.map((project, i) => (
-              <BentoCard
-                key={project.title}
-                subtitle={project.tech}
-                title={project.title}
-                span="md:col-span-1 lg:col-span-1 md:row-span-1"
-              >
-                <p className="text-sm text-text-main/70 mb-4">{project.description}</p>
-                <a 
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-1 text-accent-sakura hover:gap-2 transition-all text-sm"
-                >
-                  Zobrazit projekt
-                  <ArrowUpRight size={16} />
-                </a>
-              </BentoCard>
-            ))}
+            {/* Portfolio Grid - Shared Element Transition */}
+            <div className="md:col-span-3 lg:col-span-4">
+              <ProjectGrid projects={PORTFOLIO_PROJECTS} />
+            </div>
 
             {/* Philosophy - Span 2x1 */}
             <BentoCard 

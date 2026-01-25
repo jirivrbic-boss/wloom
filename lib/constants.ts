@@ -28,6 +28,12 @@ export const ANIMATION_CONFIG = {
     stiffness: 300,
     damping: 20,
   },
+  // Konfigurace pro Shared Element Transition
+  expandTransition: {
+    type: 'spring',
+    stiffness: 300,
+    damping: 30,
+  },
 } as const
 
 export const TECH_STACK = [

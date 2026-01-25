@@ -1,13 +1,24 @@
 // Global Type Definitions
 
 export interface Project {
+  id: string
   title: string
   description: string
   tech: string
   link: string
   image?: string
+  screenshot?: string
   github?: string
   featured?: boolean
+  // Rozšířené informace pro detail
+  story?: string
+  requirements?: string[]
+  technicalDetails?: string
+  challenges?: string[]
+  technologies?: string[]
+  year?: string
+  client?: string
+  allowIframe?: boolean
 }
 
 export interface Service {
