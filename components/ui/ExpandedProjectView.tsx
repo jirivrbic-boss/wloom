@@ -134,7 +134,7 @@ export default function ExpandedProjectView({ project, onClose }: ExpandedProjec
               <motion.div
                 layoutId={`project-image-${project.id}`}
                 className="relative w-full bg-surface/50 rounded-2xl md:rounded-xl overflow-hidden border border-border/50"
-                style={{ minHeight: '500px', height: '70vh', maxHeight: '900px' }}
+                style={{ minHeight: '600px', height: '80vh', maxHeight: '1200px' }}
               >
                 {/* Browser Mockup Header */}
                 <div className="absolute top-0 left-0 right-0 h-8 md:h-10 bg-surface/90 border-b border-border/50 flex items-center px-2 md:px-4 gap-2 z-10">
@@ -149,7 +149,7 @@ export default function ExpandedProjectView({ project, onClose }: ExpandedProjec
                 </div>
 
                 {/* iFrame nebo Fallback */}
-                <div className="pt-8 md:pt-10 w-full relative" style={{ height: 'calc(100% - 2.5rem)' }}>
+                <div className="pt-8 md:pt-10 w-full relative overflow-auto" style={{ height: 'calc(100% - 2.5rem)' }}>
                   {!iframeError && project.allowIframe !== false ? (
                     <>
                       {isIframeLoading && (
@@ -175,8 +175,8 @@ export default function ExpandedProjectView({ project, onClose }: ExpandedProjec
                         scrolling="yes"
                         style={{ 
                           width: '100%',
-                          height: '100%',
-                          minHeight: '700px',
+                          height: '1200px',
+                          minHeight: '1200px',
                           display: 'block'
                         }}
                         onLoad={() => {
