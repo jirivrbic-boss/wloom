@@ -103,7 +103,7 @@ export default function Home() {
               span="md:col-span-1 md:row-span-1"
             >
               <p className="text-sm text-text-main/70 mb-3">
-                Chcete rozkvetnou online? Spojme se!
+                Chcete rozkvést online? Kontaktujte nás.
               </p>
               <a 
                 href="mailto:info@wloom.eu"
@@ -180,20 +180,6 @@ export default function Home() {
             <div className="md:col-span-3 lg:col-span-4">
               <ProjectGrid projects={PORTFOLIO_PROJECTS} />
             </div>
-
-            {/* Philosophy - Span 2x1 */}
-            <BentoCard 
-              subtitle="naše filosofie"
-              title="Rozkvetněte S Námi"
-              span="md:col-span-2 md:row-span-1"
-            >
-              <p className="text-text-main/70 leading-relaxed text-base">
-                <strong>Každý projekt je jako sakura – roste a rozkvétá.</strong> Začínáme s vaší 
-                představou, pečlivě ji pěstujeme a sledujeme, jak váš byznys online rozkvétá. 
-                Kombinujeme nejnovější technologie s krásnými vizuály, které zaujmou mladé i starší generaci. 
-                Výsledek? Web, který přináší skutečné výsledky.
-              </p>
-            </BentoCard>
 
           </div>
         </div>
